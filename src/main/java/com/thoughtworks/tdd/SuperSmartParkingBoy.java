@@ -16,18 +16,18 @@ public class SuperSmartParkingBoy extends ParkingBoy {
         if(!isCarValid(car)) {
             return null;
         }
-        float maxPositionNumRate = 0;
+        float maxValidPositionRate = 0;
         int maxPositionRateLotIndex = 0;
         //int totalCapacity = parkingLots.stream().map(obj -> obj.getCapacity()).reduce(0, (pre, curr) -> pre + curr);
         for (int i = 0; i < parkingLots.size(); i++) {
             float capacity= parkingLots.get(i).getCapacity();
             float positionNumRate = (capacity - parkingLots.get(i).getCars().size()) / capacity;
-            if(positionNumRate > maxPositionNumRate) {
+            if(positionNumRate > maxValidPositionRate) {
                 maxPositionRateLotIndex = i;
-                maxPositionNumRate = positionNumRate;
+                maxValidPositionRate = positionNumRate;
             }
         }
-        if(maxPositionNumRate == 0) {
+        if(maxValidPositionRate == 0) {
             setErrorMessage("Not enough position.");
             return null;
         }
