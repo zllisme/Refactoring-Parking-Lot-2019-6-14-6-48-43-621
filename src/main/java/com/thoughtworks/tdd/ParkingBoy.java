@@ -40,13 +40,8 @@ public class ParkingBoy {
             errorMessage = "Not enough position.";
             return null;
         }
-        if(car == null){
+        if(!isCarValid(car)){
             return null;
-        }
-        for(ParkingLot parkingLot : parkingLots) {
-            if(parkingLot.getCars().containsValue(car)) {
-                return null;
-            }
         }
         Ticket ticket = null;
         for(ParkingLot parkingLot : parkingLots) {
@@ -56,6 +51,19 @@ public class ParkingBoy {
             }
         }
         return ticket;
+    }
+
+    public boolean isCarValid(Car car) {
+        boolean result = true;
+        if(car == null){
+            result = false;
+        }
+        for(ParkingLot parkingLot : parkingLots) {
+            if(parkingLot.getCars().containsValue(car)) {
+                result = false;
+            }
+        }
+        return result;
     }
 
     public Car fetch(Ticket ticket) {

@@ -13,13 +13,8 @@ public class SmartParkingBoy extends ParkingBoy{
 
     @Override
     public Ticket park(Car car) {
-        if(car == null){
+        if(!isCarValid(car)){
             return null;
-        }
-        for(ParkingLot parkingLot : parkingLots) {
-            if(parkingLot.getCars().containsValue(car)) {
-                return null;
-            }
         }
         int maxPositionNum = 0;
         int maxPositionLotIndex = 0;
